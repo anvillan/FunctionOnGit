@@ -8,36 +8,33 @@ on:
     - master
 env:
   AZURE_FUNCTIONAPP_NAME: FunctionAppV120200721235434
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: .
   AZURE_FUNCTIONAPP_PUBLISH_PROFILE: ${{ secrets.FUNCTIONAPPV120200721235434_PUBLISH_PROFILE }}
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 3.1.x
   PUBLISH_PROVIDERTYPE: azureFunctionAppWindows
   PUBLISH_RESOURCEID: /subscriptions/07268dd7-4c50-434b-b1ff-67b8164edb41/resourceGroups/aapt0722Group/providers/Microsoft.Web/sites/FunctionAppV120200721235434
-
 jobs:
   build-and-deploy:
     runs-on: windows-latest
     steps:
-    - name: 'Checkout GitHub Action'
+    - name: Checkout GitHub Action
       uses: actions/checkout@master
-
-    - name: Setup DotNet ${{ env.DOTNET_CORE_VERSION }} Environment
+    - name: Setup .NET Core SDK ${{ env.DOTNET_CORE_VERSION }}
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: ${{ env.DOTNET_CORE_VERSION }}
+    - name: Resolve Project Dependencies Using Dotnet
+      run: >
+        pushd "./${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}"
 
-    - name: 'Resolve Project Dependencies Using Dotnet'
-      shell: pwsh
-      run: |
-        pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
-        dotnet build --configuration Release --output ./output
+        dotnet build --configuration ${{ env.CONFIGURATION }} --output "./output"
+
         popd
-    - name: 'Run Azure Functions Action'
+      shell: pwsh
+    - name: Run Azure Functions Action
       uses: Azure/functions-action@v1
-      id: fa
       with:
         app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
-        package: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output'
         publish-profile: ${{ env.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
-
+        package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output
