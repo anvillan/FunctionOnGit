@@ -20,18 +20,19 @@ jobs:
     steps:
     - name: Checkout GitHub Action
       uses: actions/checkout@master
+      
     - name: Setup .NET Core SDK ${{ env.DOTNET_CORE_VERSION }}
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: ${{ env.DOTNET_CORE_VERSION }}
+    
     - name: Resolve Project Dependencies Using Dotnet
       run: >
-        pushd "./${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}"
-
-        dotnet build --configuration ${{ env.CONFIGURATION }} --output "./output"
-
+        pushd "${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}"
+        dotnet build --configuration ${{ env.CONFIGURATION }} --output "${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output"
         popd
       shell: pwsh
+    
     - name: Run Azure Functions Action
       uses: Azure/functions-action@v1
       with:
