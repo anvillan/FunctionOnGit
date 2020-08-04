@@ -1,4 +1,4 @@
-name: Deploy Function App (.NET Core) to FunctionAppV120200721235434
+name: Deploy Function App (.NET Core) to FunctionApp320200723082814
 on:
   pull_request:
     branches:
@@ -7,13 +7,13 @@ on:
     branches:
     - master
 env:
-  AZURE_FUNCTIONAPP_NAME: FunctionAppV120200721235434
+  AZURE_FUNCTIONAPP_NAME: FunctionApp320200723082814
   AZURE_FUNCTIONAPP_PACKAGE_PATH: .
-  AZURE_FUNCTIONAPP_PUBLISH_PROFILE: ${{ secrets.FUNCTIONAPPV120200721235434_PUBLISH_PROFILE }}
+  AZURE_FUNCTIONAPP_PUBLISH_PROFILE: ${{ secrets.FUNCTIONAPP320200723082814_PUBLISH_PROFILE }}
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 3.1.x
   PUBLISH_PROVIDERTYPE: azureFunctionAppWindows
-  PUBLISH_RESOURCEID: /subscriptions/07268dd7-4c50-434b-b1ff-67b8164edb41/resourceGroups/aapt0722Group/providers/Microsoft.Web/sites/FunctionAppV120200721235434
+  PUBLISH_RESOURCEID: /subscriptions/07268dd7-4c50-434b-b1ff-67b8164edb41/resourceGroups/avcPortalResourceGrp/providers/Microsoft.Web/sites/FunctionApp320200723082814
 jobs:
   build-and-deploy:
     runs-on: windows-latest
