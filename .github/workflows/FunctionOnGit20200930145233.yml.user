@@ -1,0 +1,4 @@
+properties:
+  PUBLISH_PROVIDER_TYPE: azureFunctionAppLinux
+  AZURE_RESOURCEID: /subscriptions/07268dd7-4c50-434b-b1ff-67b8164edb41/resourceGroups/avcPortalResourceGrp/providers/Microsoft.Web/sites/FunctionOnGit20200930145233
+  AZURE_ISLINUX: True

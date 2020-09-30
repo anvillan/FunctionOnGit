@@ -12,7 +12,7 @@ namespace FunctionOnGit
 {
     public static class Function1
     {
-        [FunctionName("FunctionOnGitWindowsNew")]
+        [FunctionName("FunctionOnGitWindowsNewLinux")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
