@@ -1,0 +1,3 @@
+properties:
+  PUBLISH_PROVIDER_TYPE: azureFunctionAppWindows
+  AZURE_RESOURCEID: /subscriptions/07268dd7-4c50-434b-b1ff-67b8164edb41/resourceGroups/aapt0930gp/providers/Microsoft.Web/sites/FunctionApp26020200930135744
